@@ -8,12 +8,13 @@ const Details = () => {
 
   return (
     <SafeAreaView style={style.container}>
-      <View>
+      <Text style={style.about}></Text>
+      <View style={style.div}>
         <Image source={require('../assets/picture.jpg')} />
-        <Text>Nome do pokemon</Text>
-        <Text>Altura</Text>
-        <Text>Peso</Text>
-        <Text>Tipo</Text>
+        <Text style={style.movieTitle}>Movie Title</Text>
+        <Text>Sinopse</Text>
+        <Text>Nota</Text>
+        <Text>Date</Text>
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <Text>Back</Text>
@@ -29,5 +30,16 @@ const style = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  about: {
+    fontSize: 30,
+    marginBottom: 50,
+  },
+  div: {
+    alignItems: 'center',
+  },
+  movieTitle: {
+    margin: 10,
+    fontSize: 20,
   },
 });
