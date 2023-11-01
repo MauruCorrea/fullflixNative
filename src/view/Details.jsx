@@ -25,7 +25,7 @@ const Details = () => {
 
       setMovieDetails(result.data);
     } catch (error) {
-      console.error(`Details error`);
+      console.error(`Error to get details, error`);
     }
   }
 
