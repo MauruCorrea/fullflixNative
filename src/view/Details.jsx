@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { api, apiKey } from '../assets/api/Req';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 const Details = () => {
   const navigation = useNavigation();
@@ -25,7 +26,7 @@ const Details = () => {
 
       setMovieDetails(result.data);
     } catch (error) {
-      console.error(`Error to get details, error`);
+      console.error(`Error to get details`, error);
     }
   }
 
@@ -37,7 +38,7 @@ const Details = () => {
 
   return (
     <ImageBackground
-      style={style.container}
+      style={style.imgBG}
       source={require('../assets/bg_fullflix.png')}
     >
       <SafeAreaView style={style.container}>
@@ -55,9 +56,23 @@ const Details = () => {
             <Text style={style.movieReleaseDate}>
               {movieDetails.release_date}
             </Text>
-            <Text style={style.movieVoteAverage}>
-              {movieDetails.vote_average}
-            </Text>
+            <AnimatedCircularProgress
+              size={50}
+              width={4}
+              fill={movieDetails.vote_average * 10 || 0}
+              tintColor='#00e0ff'
+              backgroundColor='#3d5875'
+              padding={5}
+              rotation={0}
+              lineCap='round'
+              style={style.animatedCircularProgress}
+            >
+              {(fill) => (
+                <Text style={style.movieVoteAverage}>
+                  {movieDetails.vote_average.toFixed(1)}
+                </Text>
+              )}
+            </AnimatedCircularProgress>
           </View>
         )}
         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
@@ -71,7 +86,16 @@ const Details = () => {
 export default Details;
 
 const style = StyleSheet.create({
+  imgBG: {
+    width: 'auto',
+    height: 150,
+    paddingTop: 100,
+    marginTop: 50,
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
   container: {
+    backgroundColor: '#000',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -104,8 +128,14 @@ const style = StyleSheet.create({
   movieVoteAverage: {
     color: 'white',
     fontSize: 15,
-    fontWeight: '400',
+    fontWeight: 'bold',
     margin: 5,
+  },
+  animatedCircularProgress: {
+    position: 'absolute',
+    top: -30,
+    right: 0,
+    marginRight: 75,
   },
   btnBack: {
     backgroundColor: 'red',
@@ -117,8 +147,9 @@ const style = StyleSheet.create({
     margin: 10,
   },
   img: {
-    width: 300,
-    height: 350,
-    borderRadius: 15,
+    width: 200,
+    height: 300,
+    borderRadius: 25,
+    resizeMode: 'contain',
   },
 });

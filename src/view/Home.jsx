@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <ImageBackground
-      style={style.container}
+      style={style.imgBG}
       source={require('../assets/bg_fullflix.png')}
     >
       <SafeAreaView style={style.container}>
@@ -85,20 +85,35 @@ const Home = () => {
 export default Home;
 
 const style = StyleSheet.create({
+  imgBG: {
+    width: 'auto',
+    height: 150,
+    paddingTop: 100,
+    marginTop: 50,
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
   container: {
+    backgroundColor: '#000',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   listTitle: {
-    marginTop: 50,
     color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
+    textShadowColor: 'red',
+    textShadowOffset: {
+      width: -1,
+      height: 1,
+    },
+    textShadowRadius: 1,
   },
   div: {
     alignItems: 'center',
     margin: 15,
+    maxWidth: '40%',
   },
   img: {
     width: 150,
@@ -106,6 +121,7 @@ const style = StyleSheet.create({
     borderRadius: 15,
   },
   movieTitle: {
+    textAlign: 'center',
     color: 'white',
     fontSize: 15,
     fontWeight: 'bold',
@@ -118,5 +134,6 @@ const style = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     paddingVertical: 5,
+    margin: 3,
   },
 });
