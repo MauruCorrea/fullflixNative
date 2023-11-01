@@ -11,10 +11,26 @@ export function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Login' component={Login} options={{ headerShown: false }} />
-        <Stack.Screen name='Registre' component={Registre} options={{ headerShown: false }} />
-        <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
-        <Stack.Screen name='Details' component={Details} options={{ headerShown: false }} />
+        <Stack.Screen
+          name='Login'
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='Registre'
+          component={Registre}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='Home'
+          component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name='Details'
+          component={Details}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

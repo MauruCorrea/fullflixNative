@@ -1,13 +1,22 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import { Text } from 'react-native';
 
 const Login = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={style.container}>
+    <ImageBackground
+      source={require('../assets/bg_fullflix.png')}
+      style={style.container}
+    >
       <Text style={style.titleLogin}>Login</Text>
       <TextInput style={style.input} placeholder='ID:       '></TextInput>
       <TextInput style={style.input} placeholder='PASSWORD: '></TextInput>
@@ -17,9 +26,9 @@ const Login = () => {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('Registre')}>
-        <Text>Não tem conta? Registre-se.</Text>
+        <Text style={style.btnRegistre}>Não tem conta? Registre-se.</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </ImageBackground>
   );
 };
 
@@ -29,20 +38,23 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#d0d0d0',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   titleLogin: {
+    color: 'white',
     fontSize: 32,
-    fontWeight: '600',
+    fontWeight: 'bold',
   },
   input: {
     backgroundColor: '#fff',
-    borderRadius: 4,
     borderWidth: 1,
-    paddingHorizontal: 100,
-    paddingVertical: 8,
-    margin: 4,
+    borderColor: '#fff',
+    width: '80%',
+    height: 50,
+    paddingHorizontal: 10,
+    marginVertical: 10,
+    borderRadius: 20,
   },
   btnAccess: {
     backgroundColor: 'red',
@@ -51,5 +63,12 @@ const style = StyleSheet.create({
     paddingVertical: 3,
     color: '#fff',
     margin: 10,
+  },
+  btnRegistre: {
+    paddingTop: 30,
+    paddingBottom: 50,
+    paddingHorizontal: 15,
+    paddingVertical: 3,
+    color: '#fff',
   },
 });

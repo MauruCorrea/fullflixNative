@@ -1,5 +1,11 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import { Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,7 +13,10 @@ const Registre = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={style.container}>
+    <ImageBackground
+      source={require('../assets/bg_fullflix.png')}
+      style={style.container}
+    >
       <Text style={style.titleRegister}>Registrar</Text>
       <TextInput style={style.input} placeholder='ID'></TextInput>
       <TextInput style={style.input} placeholder='PASSWORD'></TextInput>
@@ -17,9 +26,9 @@ const Registre = () => {
         <Text style={style.btnAccess}>ACESSAR</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text>Já é cadastrado? Acesse.</Text>
+        <Text style={style.btnLogin}>Já é cadastrado? Acesse.</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </ImageBackground>
   );
 };
 
@@ -34,22 +43,28 @@ const style = StyleSheet.create({
   },
   titleRegister: {
     fontSize: 32,
-    fontWeight: '600',
+    fontWeight: 'bold',
+    color: '#fff',
   },
   input: {
     backgroundColor: '#fff',
-    borderRadius: 4,
     borderWidth: 1,
-    paddingHorizontal: '25%',
-    paddingVertical: 8,
-    margin: 4,
+    borderColor: '#fff',
+    width: '80%',
+    height: 50,
+    paddingHorizontal: 10,
+    marginVertical: 10,
+    borderRadius: 20,
   },
   btnAccess: {
     backgroundColor: 'red',
     borderRadius: 5,
     paddingHorizontal: 15,
-    paddingVertical: 3,
+    marginVertical: 10,
     color: '#fff',
     margin: 10,
+  },
+  btnLogin: {
+    color: '#fff',
   },
 });
