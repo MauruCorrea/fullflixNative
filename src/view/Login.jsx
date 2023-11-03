@@ -1,16 +1,35 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useState } from 'react';
 import {
+  Alert,
   ImageBackground,
   SafeAreaView,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import { Text } from 'react-native';
+import { firebaseConfig } from '../assets/auth/auth';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const login = async () => {
+    await signInWithEmailAndPassword(auth, email, password)
+      .then((response) => {
+        navigation.navigate('Home');
+      })
+      .catch((error) => {
+        Alert.alert('Erro ao logar usuario não encontrado');
+      });
+  };
 
   return (
     <ImageBackground
@@ -18,11 +37,25 @@ const Login = () => {
       style={style.container}
     >
       <Text style={style.titleLogin}>Login</Text>
-      <TextInput style={style.input} placeholder='ID:       '></TextInput>
-      <TextInput style={style.input} placeholder='PASSWORD: '></TextInput>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-        <Text style={style.btnAccess}>ACESSAR</Text>
+      {/* IMPUTS */}
+      <TextInput
+        value={email}
+        onChangeText={(e) => setEmail(e)}
+        placeholder='Email:'
+        style={style.input}
+      ></TextInput>
+      <TextInput
+        secureTextEntry
+        value={password}
+        onChangeText={(e) => setPassword(e)}
+        style={style.input}
+        placeholder='password:'
+      ></TextInput>
+      {/* IMPUTS */}
+
+      <TouchableOpacity onPress={() => login()}>
+        <Text style={style.btnAccess}>Login</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate('Registre')}>
